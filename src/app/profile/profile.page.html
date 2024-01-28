@@ -1,0 +1,89 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Columna principal -->
+  <ion-col sizeMd="4" offsetMd="4">
+    <!-- Verificar si el personaje existe -->
+    <div *ngIf="character">
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <!-- Imagen del personaje -->
+          <img [src]="character.image" alt="{{ character.name }}" />
+
+          <!-- Título del personaje -->
+          <ion-card-title>{{ character.name }}</ion-card-title>
+
+          <!-- Especie del personaje -->
+          <p>{{ character.species }}</p>
+
+          <!-- Lista de detalles del personaje -->
+          <ion-list class="ion-text-left">
+            <!-- Estado del personaje -->
+            <ion-item *ngIf="character.status">
+              <ion-icon
+                [name]="getStatusIcon(character.status)"
+                [color]="getStatusColor(character.status)"
+              ></ion-icon>
+              <ion-label class="ion-padding-start"
+                >{{ character.status }}</ion-label
+              >
+            </ion-item>
+            <!-- Ubicación del personaje -->
+            <ion-item *ngIf="character.location && character.location.name">
+              <ion-icon name="pin"></ion-icon>
+              <ion-label class="ion-padding-start"
+                >{{ character.location.name }}</ion-label
+              >
+            </ion-item>
+            <!-- Fecha de creación del personaje -->
+            <ion-item *ngIf="character.created">
+              <ion-icon name="calendar"></ion-icon>
+              <ion-label class="ion-padding-start"
+                >{{ character.created | date }}</ion-label
+              >
+            </ion-item>
+            <!-- Planeta de origen del personaje -->
+            <ion-item *ngIf="character.origin && character.origin.name">
+              <ion-icon name="planet"></ion-icon>
+              <ion-label class="ion-padding-start"
+                >{{ character.origin.name }}</ion-label
+              >
+            </ion-item>
+            <!-- Desplegable de episodios -->
+            <ion-list *ngIf="episodes.length > 0">
+              <ion-item>
+                <ion-icon name="albums" slot="start"></ion-icon>
+                <ion-label (click)="toggleEpisodeVisibility()">Episodes</ion-label>
+                <ion-buttons slot="end">
+                  <ion-icon name="chevron-down" *ngIf="!episodeVisible"></ion-icon>
+                  <ion-icon name="chevron-up" *ngIf="episodeVisible"></ion-icon>
+                </ion-buttons>
+              </ion-item>
+              <ion-item *ngIf="episodeVisible" lines="none">
+                <ion-list class="episodes-list">
+                  <ion-item *ngFor="let episode of episodes" class="episode-item" [routerLink]="['/episode/'+ episode.id]">
+                    <ion-label>{{ episode.name }}</ion-label>
+                    <!-- Otros detalles del episodio -->
+                  </ion-item>
+                </ion-list>
+              </ion-item>
+            </ion-list>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-col>
+</ion-content>

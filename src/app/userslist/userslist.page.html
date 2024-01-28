@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Users</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <!-- Paginación -->
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        class="ion-padding-start"
+        (click)="goToPage(currentPage - 1)"
+        
+        ><ion-icon name="chevron-back-outline"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+    <ion-buttons>
+      <ion-button *ngIf="getPageRange()[0] > 1" (click)="goToPage(1)"
+        >1</ion-button
+      >
+      <ion-label *ngIf="getPageRange()[0] > 2">...</ion-label>
+      <ion-button
+        *ngFor="let page of getPageRange()"
+        [disabled]="page === currentPage"
+        (click)="goToPage(page)"
+        [class.current-page]="page === currentPage"
+        >{{ page }}</ion-button
+      >
+      <ion-label *ngIf="getPageRange().slice(-1)[0] < totalPages - 1"
+        >...</ion-label
+      >
+      <ion-button
+        *ngIf="getPageRange().slice(-1)[0] < totalPages"
+        (click)="goToPage(totalPages)"
+        >{{ totalPages }}</ion-button
+      >
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="goToPage(currentPage + 1)"
+        *ngIf="currentPage < totalPages"
+        ><ion-icon name="chevron-forward-outline"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- Contenido de tu página aquí -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item
+            *ngFor="let character of characters"
+            [routerLink]="['/profile/'+ character.id]"
+          >
+            <ion-avatar slot="start">
+              <img src="{{character.image}}" alt="" />
+            </ion-avatar>
+            <ion-label>{{character.name}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,22 @@
+ion-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  @media (min-width: 768px) {
+    ion-footer {
+      position: relative;
+      bottom: initial;
+      width: auto;
+    }
+  }
+  
+  .current-page {
+    border: 2px solid gray; /* Estilo del borde del número de página actual */
+    border-radius: 5px; /* Radio de borde para hacerlo más redondeado */
+    padding: 5px 10px; /* Ajuste de relleno para que el borde no esté pegado al número */
+    background-color: gray; /* Color de fondo del número de página actual */
+  }
+  

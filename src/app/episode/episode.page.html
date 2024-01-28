@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ episode.name }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>{{ episode.name }}</ion-card-title>
+      <ion-item>
+        <ion-label>Air Date:</ion-label>
+        <ion-label>{{ episode.air_date }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Episode:</ion-label>
+        <ion-label>{{ episode.episode }}</ion-label>
+      </ion-item>
+      <!-- Desplegable de personajes -->
+      <ion-list *ngIf="characters.length > 0">
+        <ion-item>
+          <ion-icon name="people" slot="start"></ion-icon>
+          <ion-label (click)="toggleCharacterVisibility()">Characters</ion-label>
+          <ion-buttons slot="end">
+            <ion-icon name="chevron-down" *ngIf="!characterVisible"></ion-icon>
+            <ion-icon name="chevron-up" *ngIf="characterVisible"></ion-icon>
+          </ion-buttons>
+        </ion-item>
+        <ion-item *ngIf="characterVisible" lines="none">
+          <ion-list class="characters-list">
+            <ion-item *ngFor="let character of characters" class="character-item" [routerLink]="['/profile/'+ character.id]">
+              <ion-avatar slot="start">
+                <img [src]="character.image" alt="{{ character.name }}">
+              </ion-avatar>
+              <ion-label>{{ character.name }}</ion-label>
+              <!-- Otros detalles del personaje -->
+            </ion-item>
+          </ion-list>
+        </ion-item>
+      </ion-list>          
+    </ion-card-content>
+  </ion-card>
+</ion-content>
