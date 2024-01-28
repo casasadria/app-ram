@@ -26,8 +26,14 @@ Esta aplicación es una aplicación móvil simple desarrollada con Ionic. Propor
 Una vez que la aplicación esté en funcionamiento, puedes acceder a ella en tu navegador web ingresando la siguiente URL: casasadria.cat/proyectos/app-ram
 
 
-## Demostración en Video
-Se ha creado un video demostrativo de la aplicación que puedes ver [aquí](https://github.com/casasadria/app-ram/assets/105226763/7ae8b71d-a8af-449d-bba8-9319f46e4aea).
+## Video de Demostración
+
+Puedes ver un ejemplo del funcionamiento de la aplicación en el siguiente video:
+
+[Ver Video de Ejemplo](https://github.com/casasadria/app-ram/assets/105226763/7ae8b71d-a8af-449d-bba8-9319f46e4aea)
+
+Para descargar el video, haz clic [aquí](https://github.com/casasadria/app-ram/assets/105226763/7ae8b71d-a8af-449d-bba8-9319f46e4aea).
+
 
 ## Contribuciones
 ¡Se aceptan contribuciones! Si deseas contribuir al desarrollo de la aplicación, sigue estos pasos:
